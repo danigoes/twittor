@@ -12,6 +12,6 @@ func ValidateJWT(next http.HandlerFunc) http.HandlerFunc {
 			http.Error(w, "Token error! " + err.Error(), http.StatusBadRequest)
 			return
 		}
-		next.ServeHTTO(w, r)
+		next.ServeHTTP(w, r)
 	}
 }
