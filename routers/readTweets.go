@@ -14,12 +14,12 @@ func ReadTweets(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if len(r.URL.Query().Get("pagina")) < 1 {
+	if len(r.URL.Query().Get("page")) < 1 {
 		http.Error(w, "page parameter is required", http.StatusBadRequest)
 		return
 	}
 
-	page, err := strconv.Atoi(r.URL.Query().Get("pagina"))
+	page, err := strconv.Atoi(r.URL.Query().Get("page"))
 	if err != nil {
 		http.Error(w, "page parameter has to be a number grater than 0", http.StatusBadRequest)
 		return
