@@ -16,13 +16,13 @@ import (
 func Handlers() {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/registro", middlew.CheckDB(routers.Register)).Methods("POST")
+	router.HandleFunc("/signup", middlew.CheckDB(routers.Register)).Methods("POST")
 	router.HandleFunc("/login", middlew.CheckDB(routers.Login)).Methods("POST")
-	router.HandleFunc("/verperfil", middlew.CheckDB(middlew.ValidateJWT(routers.ViewProfile))).Methods("GET")
-	router.HandleFunc("/modificarperfil", middlew.CheckDB(middlew.ValidateJWT(routers.EditProfile))).Methods("PUT")
+	router.HandleFunc("/searchProfile", middlew.CheckDB(middlew.ValidateJWT(routers.ViewProfile))).Methods("GET")
+	router.HandleFunc("/editProfile", middlew.CheckDB(middlew.ValidateJWT(routers.EditProfile))).Methods("PUT")
 	router.HandleFunc("/tweet", middlew.CheckDB(middlew.ValidateJWT(routers.SaveTweet))).Methods("POST")
-	router.HandleFunc("/leotweets", middlew.CheckDB(middlew.ValidateJWT(routers.ReadTweets))).Methods("GET")
-
+	router.HandleFunc("/readTweets", middlew.CheckDB(middlew.ValidateJWT(routers.ReadTweets))).Methods("GET")
+	router.HandleFunc("/deleteTweet", middlew.CheckDB(middlew.ValidateJWT(routers.DeleteTweet))).Methods("DELETE")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
